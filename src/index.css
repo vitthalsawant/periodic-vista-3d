@@ -144,8 +144,9 @@
   }
   
   .element-card-face {
-    @apply absolute inset-0 backface-hidden flex items-center justify-center rounded-lg;
+    @apply absolute inset-0 flex items-center justify-center rounded-lg;
     transform-style: preserve-3d;
+    backface-visibility: hidden;
   }
   
   .element-glow {

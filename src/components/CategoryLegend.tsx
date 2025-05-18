@@ -15,7 +15,7 @@ const CategoryLegend = () => {
   ];
   
   return (
-    <div className="p-4 rounded-lg bg-card shadow-md">
+    <div className="p-4 rounded-lg bg-white shadow-md">
       <h3 className="text-lg font-bold mb-4">Element Categories</h3>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
         {categories.map(category => (

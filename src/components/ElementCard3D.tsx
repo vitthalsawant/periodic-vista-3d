@@ -24,7 +24,7 @@ const ElementCard3D = ({ element, isActive, onClick }: ElementCard3DProps) => {
   
   return (
     <div 
-      className={`w-full h-full min-h-[140px] flex items-center justify-center`}
+      className={`w-full h-full flex items-center justify-center`}
       onClick={onClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -33,16 +33,16 @@ const ElementCard3D = ({ element, isActive, onClick }: ElementCard3DProps) => {
         className={`element-card ${(hovered || isActive) ? 'element-card-hover' : ''}`}
         style={{
           backgroundColor: color,
-          borderRadius: '8px',
-          padding: '8px',
+          borderRadius: '4px',
+          padding: '4px',
           width: '100%',
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          boxShadow: (hovered || isActive) ? `0 0 15px ${color}` : 'none',
-          position: 'relative',
-          transition: 'all 0.3s ease'
+          boxShadow: (hovered || isActive) ? `0 0 10px ${color}` : 'none',
+          transition: 'all 0.2s ease',
+          transform: (hovered || isActive) ? 'scale(1.1)' : 'scale(1)'
         }}
       >
         <div className="flex justify-between">
@@ -56,7 +56,7 @@ const ElementCard3D = ({ element, isActive, onClick }: ElementCard3DProps) => {
         </div>
         
         {(hovered || isActive) && (
-          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-lg p-2 flex flex-col justify-between z-10 animate-fade-in">
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-md p-2 flex flex-col justify-between z-10 animate-fade-in">
             <div>
               <div className="text-lg font-bold text-white">{element.symbol}</div>
               <div className="text-sm text-white">{element.name}</div>

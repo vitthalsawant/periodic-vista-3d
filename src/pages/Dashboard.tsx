@@ -1,7 +1,6 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { Element, ElementCategory, PhysicalState, allElements, createPeriodicTableGrid, ElementGridItem } from '@/data/elements';
-import ElementCard from '@/components/ElementCard';
 import ElementCard3D from '@/components/ElementCard3D';
 import ElementDetail from '@/components/ElementDetail';
 import CategoryLegend from '@/components/CategoryLegend';
@@ -78,23 +77,28 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <div className="container mx-auto px-4 py-8">
-        <header className="flex justify-between items-center mb-8">
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
+      {/* Header */}
+      <header className="bg-primary/10 backdrop-blur-sm shadow-sm py-4">
+        <div className="container mx-auto px-4 flex justify-between items-center">
           <Button 
             variant="ghost" 
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 text-primary hover:text-primary/80"
             onClick={() => navigate('/')}
           >
             <ArrowLeft size={16} />
             Back to Home
           </Button>
           
-          <h1 className="text-3xl font-bold text-center">Periodic Table Dashboard</h1>
+          <h1 className="text-3xl font-bold text-center bg-gradient-to-r from-primary to-primary/70 text-transparent bg-clip-text">
+            Interactive Periodic Table
+          </h1>
           
           <div className="w-32"></div> {/* Spacer to center the title */}
-        </header>
-        
+        </div>
+      </header>
+      
+      <main className="flex-grow container mx-auto px-4 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
           <div className="lg:col-span-1">
             <CategoryLegend />
@@ -110,7 +114,7 @@ const Dashboard = () => {
                   <div 
                     key={`${rowIndex}-${colIndex}`} 
                     className={`
-                      w-14 h-14 m-0.5 flex-shrink-0
+                      w-16 h-16 m-0.5 flex-shrink-0
                       ${!cell.element ? 'opacity-0' : ''}
                       ${cell.element && isElementFiltered(cell.element) ? 'opacity-30' : ''}
                       ${activeElement && cell.element?.atomicNumber === activeElement.atomicNumber ? 'z-10 shadow-xl' : ''}
@@ -140,7 +144,29 @@ const Dashboard = () => {
           isOpen={isDetailOpen} 
           onClose={() => setIsDetailOpen(false)}
         />
-      </div>
+      </main>
+      
+      {/* Footer */}
+      <footer className="bg-primary/5 py-4 mt-8">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Interactive Periodic Table
+            </p>
+            <div className="flex gap-4 mt-4 md:mt-0">
+              <Button variant="link" className="text-muted-foreground hover:text-primary p-0">
+                About
+              </Button>
+              <Button variant="link" className="text-muted-foreground hover:text-primary p-0">
+                Help
+              </Button>
+              <Button variant="link" className="text-muted-foreground hover:text-primary p-0">
+                Contact
+              </Button>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
