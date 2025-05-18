@@ -14,17 +14,15 @@ const ElementCard3D = ({ element, isActive, onClick }: ElementCard3DProps) => {
   
   const handleMouseEnter = () => {
     setHover(true);
-    document.body.style.cursor = 'pointer';
   };
   
   const handleMouseLeave = () => {
     setHover(false);
-    document.body.style.cursor = 'auto';
   };
   
   return (
     <div 
-      className={`w-full h-full flex items-center justify-center`}
+      className="w-full h-full cursor-pointer"
       onClick={onClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -34,44 +32,44 @@ const ElementCard3D = ({ element, isActive, onClick }: ElementCard3DProps) => {
         style={{
           backgroundColor: color,
           borderRadius: '4px',
-          padding: '4px',
           width: '100%',
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
+          padding: '6px',
           boxShadow: (hovered || isActive) ? `0 0 10px ${color}` : 'none',
           transition: 'all 0.2s ease',
           transform: (hovered || isActive) ? 'scale(1.1)' : 'scale(1)'
         }}
       >
-        <div className="flex justify-between">
-          <div className="text-xs text-white font-bold">{element.atomicNumber}</div>
-          <div className="text-xs text-white">{element.atomicMass}</div>
+        <div className="flex justify-between text-white">
+          <div className="text-xs font-bold">{element.atomicNumber}</div>
+          <div className="text-xs">{element.atomicMass}</div>
         </div>
         
         <div className="flex flex-col items-center justify-center">
           <div className="text-2xl font-bold text-white">{element.symbol}</div>
-          <div className="text-xs text-white truncate max-w-full">{element.name}</div>
+          <div className="text-xs text-white truncate w-full text-center">{element.name}</div>
         </div>
         
         {(hovered || isActive) && (
-          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-md p-2 flex flex-col justify-between z-10 animate-fade-in">
-            <div>
-              <div className="text-lg font-bold text-white">{element.symbol}</div>
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded p-2 flex items-center justify-center z-10 animate-fade-in">
+            <div className="text-center">
+              <div className="text-xl font-bold text-white">{element.symbol}</div>
               <div className="text-sm text-white">{element.name}</div>
-              <div className="text-xs text-white/80">Atomic Number: {element.atomicNumber}</div>
-              <div className="text-xs text-white/80">Atomic Mass: {element.atomicMass}</div>
+              <div className="mt-1">
+                <button 
+                  className="mt-1 bg-white/20 text-white text-xs py-1 px-2 rounded hover:bg-white/30"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onClick();
+                  }}
+                >
+                  Details
+                </button>
+              </div>
             </div>
-            <button 
-              className="mt-2 bg-white/20 text-white text-xs py-1 rounded-md hover:bg-white/30"
-              onClick={(e) => {
-                e.stopPropagation();
-                onClick();
-              }}
-            >
-              View Details
-            </button>
           </div>
         )}
       </div>

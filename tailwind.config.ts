@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -79,6 +80,9 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+			gridTemplateColumns: {
+				'18': 'repeat(18, minmax(0, 1fr))',
+			},
 			keyframes: {
 				'accordion-down': {
 					from: {
@@ -122,10 +126,6 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.3s ease-out',
 				'scale-up': 'scale-up 0.2s ease-out'
-			},
-			backfaceVisibility: {
-				hidden: 'hidden',
-				visible: 'visible',
 			}
 		}
 	},
