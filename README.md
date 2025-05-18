@@ -1,73 +1,105 @@
-# Welcome to your Lovable project
+# Periodic Vista 3D
 
-## Project info
+A modern, interactive periodic table visualization built with React, featuring both 2D and 3D views of chemical elements. This project provides an engaging way to explore and learn about the periodic table of elements.
 
-**URL**: https://lovable.dev/projects/ae256d76-0561-4135-a47b-bd661b740a61
+## Features
 
-## How can I edit this code?
+- Interactive periodic table with both 2D and 3D visualization modes
+- Detailed element information cards with comprehensive data
+- Element filtering by category, state, period, and block
+- Responsive design with modern UI components
+- Real-time element data visualization
+- Interactive element details view with multiple tabs
+- Category-based color coding and legend
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- React with TypeScript
+- Vite for build tooling
+- React Router for navigation
+- TanStack Query for data management
+- Modern UI components with custom styling
+- 3D visualization capabilities
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ae256d76-0561-4135-a47b-bd661b740a61) and start prompting.
+## Project Structure
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+periodic-vista-3d/
+├── public/
+│   ├── fonts/
+│   ├── lovable-uploads/
+│   ├── favicon.ico
+│   ├── placeholder.svg
+│   └── robots.txt
+├── src/
+│   ├── components/
+│   ├── data/
+│   ├── hooks/
+│   ├── lib/
+│   ├── pages/
+│   ├── App.css
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   └── vite-env.d.ts
 ```
 
-**Edit a file directly in GitHub**
+## Key Components
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### ElementCard
+- Displays basic element information
+- Interactive hover states
+- Shows atomic number, symbol, name, and atomic mass
+- Category and electron configuration on hover
 
-**Use GitHub Codespaces**
+### ElementCard3D
+- 3D visualization of elements
+- Interactive hover effects
+- Displays key element properties
+- Smooth transitions and animations
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### ElementDetail
+- Comprehensive element information
+- Multiple tabs for different data categories:
+  - Properties
+  - Structure
+  - Uses
+- Physical and atomic properties
+- Historical information
+- Electron configuration
 
-## What technologies are used for this project?
+### ElementFilters
+- Filter elements by:
+  - Category
+  - State
+  - Period
+  - Block
+- Interactive filter controls
+- Real-time filtering
 
-This project is built with:
+## Getting Started
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:5173](http://localhost:5173) in your browser
 
-## How can I deploy this project?
+## Available Scripts
 
-Simply open [Lovable](https://lovable.dev/projects/ae256d76-0561-4135-a47b-bd661b740a61) and click on Share -> Publish.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
 
-## Can I connect a custom domain to my Lovable project?
+## Contributing
 
-Yes, you can!
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## License
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This project is licensed under the MIT License - see the LICENSE file for details.
