@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { Element, categoryColors, categoryLabels } from '@/data/elements';
 import { Button } from '@/components/ui/button';
@@ -9,15 +8,16 @@ interface ElementCardProps {
   isActive: boolean;
   onClick: () => void;
   onViewMore: () => void;
+  color?: string;
 }
 
-const ElementCard = ({ element, isActive, onClick, onViewMore }: ElementCardProps) => {
+const ElementCard = ({ element, isActive, onClick, onViewMore, color }: ElementCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   
   const getCategoryColor = () => {
-    return categoryColors[element.category] || '#888';
+    return color || categoryColors[element.category] || '#888';
   };
   
   const getCategoryLabel = () => {

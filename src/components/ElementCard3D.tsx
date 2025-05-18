@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Element, categoryColors } from '@/data/elements';
 
@@ -6,11 +5,12 @@ interface ElementCard3DProps {
   element: Element;
   isActive: boolean;
   onClick: () => void;
+  color?: string;
 }
 
-const ElementCard3D = ({ element, isActive, onClick }: ElementCard3DProps) => {
+const ElementCard3D = ({ element, isActive, onClick, color }: ElementCard3DProps) => {
   const [hovered, setHover] = useState(false);
-  const color = categoryColors[element.category] || '#888';
+  const cardColor = color || categoryColors[element.category] || '#888';
   
   const handleMouseEnter = () => {
     setHover(true);
@@ -30,7 +30,7 @@ const ElementCard3D = ({ element, isActive, onClick }: ElementCard3DProps) => {
       <div 
         className={`element-card ${(hovered || isActive) ? 'element-card-hover' : ''}`}
         style={{
-          backgroundColor: color,
+          backgroundColor: cardColor,
           borderRadius: '4px',
           width: '100%',
           height: '100%',
@@ -38,7 +38,7 @@ const ElementCard3D = ({ element, isActive, onClick }: ElementCard3DProps) => {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '6px',
-          boxShadow: (hovered || isActive) ? `0 0 10px ${color}` : 'none',
+          boxShadow: (hovered || isActive) ? `0 0 10px ${cardColor}` : 'none',
           transition: 'all 0.2s ease',
           transform: (hovered || isActive) ? 'scale(1.1)' : 'scale(1)'
         }}

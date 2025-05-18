@@ -1,7 +1,6 @@
-
 import { useState, useEffect, useMemo } from 'react';
 import { Element, ElementCategory, PhysicalState, allElements, createPeriodicTableGrid, ElementGridItem } from '@/data/elements';
-import ElementCard3D from '@/components/ElementCard3D';
+import ElementCard from '@/components/ElementCard';
 import ElementDetail from '@/components/ElementDetail';
 import CategoryLegend from '@/components/CategoryLegend';
 import { useToast } from '@/components/ui/use-toast';
@@ -128,6 +127,7 @@ const Dashboard = () => {
                       ${activeElement && cell.element?.atomicNumber === activeElement.atomicNumber ? 'z-10' : ''}
                       ${cell.element ? 'h-16 w-16' : 'h-16 w-16'}
                       col-span-1
+                      ${rowIndex >= 8 ? 'mt-4' : ''}
                     `}
                     style={{
                       gridRow: rowIndex + 1,
@@ -135,10 +135,11 @@ const Dashboard = () => {
                     }}
                   >
                     {cell.element && (
-                      <ElementCard3D
+                      <ElementCard
                         element={cell.element}
                         isActive={activeElement?.atomicNumber === cell.element.atomicNumber}
                         onClick={() => handleElementClick(cell.element!)}
+                        onViewMore={() => handleElementClick(cell.element!)}
                       />
                     )}
                   </div>
