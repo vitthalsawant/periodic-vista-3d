@@ -5,83 +5,83 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: 350 100% 98%;
+    --foreground: 240 10% 3.9%;
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 350 100% 98%;
+    --card-foreground: 240 10% 3.9%;
 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 350 100% 98%;
+    --popover-foreground: 240 10% 3.9%;
 
-    --primary: 252 100% 69%;
+    --primary: 350 80% 80%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 240 5.9% 10%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 350 20% 96%;
+    --secondary-foreground: 240 5.9% 10%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 350 10% 90%;
+    --muted-foreground: 240 3.8% 46.1%;
 
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 350 40% 90%;
+    --accent-foreground: 240 5.9% 10%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --border: 350 10% 85%;
+    --input: 350 10% 85%;
+    --ring: 350 80% 80%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary: 350 80% 80%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent: 350 20% 96%;
     --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-border: 350 10% 85%;
+    --sidebar-ring: 350 80% 80%;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 350 30% 20%;
     --foreground: 0 0% 98%;
 
-    --card: 240 10% 3.9%;
+    --card: 350 30% 20%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 10% 3.9%;
+    --popover: 350 30% 20%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 252 100% 69%;
+    --primary: 350 80% 80%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 240 5.9% 10%;
+    --secondary: 350 40% 30%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 350 30% 30%;
+    --muted-foreground: 350 10% 70%;
 
-    --accent: 240 3.7% 15.9%;
+    --accent: 350 40% 40%;
     --accent-foreground: 0 0% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --border: 350 30% 30%;
+    --input: 350 30% 30%;
+    --ring: 350 80% 80%;
     
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-background: 350 30% 20%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 350 80% 80%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 350 40% 30%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 350 30% 30%;
+    --sidebar-ring: 350 80% 80%;
   }
 }
 
@@ -115,10 +115,19 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    filter: drop-shadow(0 0 5px rgba(139, 92, 246, 0.5));
+    filter: drop-shadow(0 0 5px rgba(255, 192, 203, 0.5));
   }
   50% {
-    filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.8));
+    filter: drop-shadow(0 0 15px rgba(255, 192, 203, 0.8));
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
   }
 }
 
@@ -128,15 +137,10 @@
     transform-style: preserve-3d;
   }
   
-  .element-card-rotating {
-    animation: rotate 20s infinite linear;
-    transform-style: preserve-3d;
-  }
-  
   .element-card-hover {
-    @apply shadow-2xl;
-    animation: none;
-    transform: perspective(1200px) rotateY(0) scale(1.05);
+    @apply shadow-lg;
+    animation: zoom-in 0.3s forwards;
+    z-index: 50;
   }
   
   .element-card-face {

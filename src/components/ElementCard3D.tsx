@@ -1,9 +1,6 @@
 
-import { useRef, useState, useEffect } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Text, RoundedBox } from '@react-three/drei';
+import { useState } from 'react';
 import { Element, categoryColors } from '@/data/elements';
-import * as THREE from 'three';
 
 interface ElementCard3DProps {
   element: Element;
@@ -11,98 +8,73 @@ interface ElementCard3DProps {
   onClick: () => void;
 }
 
-// Component that renders the actual 3D element card
-const Card = ({ element, isActive, onClick }: ElementCard3DProps) => {
-  const meshRef = useRef<THREE.Mesh>(null);
+const ElementCard3D = ({ element, isActive, onClick }: ElementCard3DProps) => {
   const [hovered, setHover] = useState(false);
   const color = categoryColors[element.category] || '#888';
   
-  // Convert hex color to THREE.Color
-  const threeColor = new THREE.Color(color);
+  const handleMouseEnter = () => {
+    setHover(true);
+    document.body.style.cursor = 'pointer';
+  };
   
-  // Handle automatic rotation
-  useFrame((state, delta) => {
-    if (meshRef.current && !isActive && !hovered) {
-      meshRef.current.rotation.y += delta * 0.5;
-      meshRef.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.5) * 0.2;
-    }
-  });
-  
-  // Hover effect for desktop
-  useEffect(() => {
-    document.body.style.cursor = hovered ? 'pointer' : 'auto';
-    return () => {
-      document.body.style.cursor = 'auto';
-    };
-  }, [hovered]);
+  const handleMouseLeave = () => {
+    setHover(false);
+    document.body.style.cursor = 'auto';
+  };
   
   return (
-    <group
+    <div 
+      className={`w-full h-full min-h-[140px] flex items-center justify-center`}
       onClick={onClick}
-      onPointerOver={() => setHover(true)}
-      onPointerOut={() => setHover(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      <RoundedBox
-        ref={meshRef}
-        args={[2, 2, 0.2]} // width, height, depth
-        radius={0.1}
-        smoothness={4}
-        position={[0, 0, 0]}
+      <div 
+        className={`element-card ${(hovered || isActive) ? 'element-card-hover' : ''}`}
+        style={{
+          backgroundColor: color,
+          borderRadius: '8px',
+          padding: '8px',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          boxShadow: (hovered || isActive) ? `0 0 15px ${color}` : 'none',
+          position: 'relative',
+          transition: 'all 0.3s ease'
+        }}
       >
-        <meshStandardMaterial 
-          color={threeColor}
-          metalness={0.5}
-          roughness={0.2}
-          emissive={threeColor}
-          emissiveIntensity={hovered || isActive ? 0.4 : 0.1}
-        />
-      </RoundedBox>
-      
-      <Text
-        position={[0, 0.5, 0.11]}
-        fontSize={0.6}
-        color="white"
-        font="/fonts/Inter-Bold.woff"
-        anchorX="center"
-        anchorY="middle"
-      >
-        {element.symbol}
-      </Text>
-      
-      <Text
-        position={[0, -0.3, 0.11]}
-        fontSize={0.2}
-        color="white"
-        font="/fonts/Inter-Regular.woff"
-        anchorX="center"
-        anchorY="middle"
-      >
-        {element.name}
-      </Text>
-      
-      <Text
-        position={[-0.8, 0.8, 0.11]}
-        fontSize={0.2}
-        color="white"
-        font="/fonts/Inter-Regular.woff"
-        anchorX="center"
-        anchorY="middle"
-      >
-        {element.atomicNumber}
-      </Text>
-    </group>
-  );
-};
-
-// Wrapper component that sets up the Three.js canvas
-const ElementCard3D = ({ element, isActive, onClick }: ElementCard3DProps) => {
-  return (
-    <div className="w-full h-full min-h-[140px]">
-      <Canvas camera={{ position: [0, 0, 3], fov: 50 }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1} />
-        <Card element={element} isActive={isActive} onClick={onClick} />
-      </Canvas>
+        <div className="flex justify-between">
+          <div className="text-xs text-white font-bold">{element.atomicNumber}</div>
+          <div className="text-xs text-white">{element.atomicMass}</div>
+        </div>
+        
+        <div className="flex flex-col items-center justify-center">
+          <div className="text-2xl font-bold text-white">{element.symbol}</div>
+          <div className="text-xs text-white truncate max-w-full">{element.name}</div>
+        </div>
+        
+        {(hovered || isActive) && (
+          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-lg p-2 flex flex-col justify-between z-10 animate-fade-in">
+            <div>
+              <div className="text-lg font-bold text-white">{element.symbol}</div>
+              <div className="text-sm text-white">{element.name}</div>
+              <div className="text-xs text-white/80">Atomic Number: {element.atomicNumber}</div>
+              <div className="text-xs text-white/80">Atomic Mass: {element.atomicMass}</div>
+            </div>
+            <button 
+              className="mt-2 bg-white/20 text-white text-xs py-1 rounded-md hover:bg-white/30"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClick();
+              }}
+            >
+              View Details
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
