@@ -43,8 +43,8 @@ const ElementCard3D = ({ element, isActive, onClick }: ElementCard3DProps) => {
           transform: (hovered || isActive) ? 'scale(1.1)' : 'scale(1)'
         }}
       >
-        <div className="flex justify-between text-white">
-          <div className="text-xs font-bold">{element.atomicNumber}</div>
+        <div className="flex justify-between text-white text-xs">
+          <div className="font-bold">{element.atomicNumber}</div>
           <div className="text-xs">{element.atomicMass}</div>
         </div>
         

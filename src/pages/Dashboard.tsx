@@ -7,7 +7,7 @@ import CategoryLegend from '@/components/CategoryLegend';
 import { useToast } from '@/components/ui/use-toast';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Info, Filter } from 'lucide-react';
+import { ArrowLeft, Info } from 'lucide-react';
 
 const Dashboard = () => {
   const [activeElement, setActiveElement] = useState<Element | null>(null);
