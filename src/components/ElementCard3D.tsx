@@ -50,7 +50,7 @@ const Card = ({ element, isActive, onClick }: ElementCard3DProps) => {
         position={[0, 0, 0]}
       >
         <meshStandardMaterial 
-          color={threeColor} 
+          color={threeColor}
           metalness={0.5}
           roughness={0.2}
           emissive={threeColor}
